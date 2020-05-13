@@ -1,0 +1,5 @@
+__pycache__
+.DS_Store
+.mypy_cache
+__MACOSX
+core/model_deps
