@@ -1,4 +1,6 @@
-# RASA Paraphrase
+# [WIP]
+
+## RASA Paraphrase
 
 A CLI port of [Paraphrasing for NLU Data Augmentation](https://forum.rasa.com/t/paraphrasing-for-nlu-data-augmentation-experimental/27744/1)
 
