@@ -1,25 +1,28 @@
 import re
+from typing import List
 
-def open_file(path: str) -> str:
-    with open(path) as f:
-        return f.read()
-
-
-def extract(md: str, pattern: str) -> list:
-    return [ items for _, items in re.findall(pattern, md)]
+from core.util import open_file
 
 
-def extract_nlu(path: str):
-    # TODO group by h2
-    return extract(open_file(path), pattern = r'(!?\-\s)(.*)')
+def _extract_h2s(md: str) -> list:
+    return re.findall(r"(##.*)", md)
 
 
-if __name__ == '__main__':
-    import argparse
-    from time import perf_counter
+def extract_nlu(md: str) -> list:
+    h2s: list = _extract_h2s(md)
+    utterances: list = []
+    intent: list = [x.strip() for x in md.split("##") if x]
+    for item in intent:
+        utterances.append([items for _, items in re.findall(r"(!?\-\s)(.*)", item)])
 
-    parser: argparse.ArgumentParser = argparse.ArgumentParser()
-    parser.add_argument('--md', help="A markdown file")
-    args = parser.parse_args()
+    # TODO: dataclass?
+    return list(zip(h2s, utterances))
 
-    print(extract_nlu('examples/nlu_no_entities.md'))
+
+def nlu2md(nlu: List[tuple]):
+    nlu_md: str = ""
+    for h2, utterances in nlu:
+        nlu_md += f"\n\n{h2}"
+        for u in utterances:
+            nlu_md += f"\n- {u}"
+    return nlu_md
