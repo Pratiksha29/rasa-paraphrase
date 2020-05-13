@@ -6,3 +6,8 @@ def filename(path: str) -> str:
 
 def file_ext(path: str) -> str:
     return "".join(re.findall(r'(\.\w.*)', path))
+
+
+def open_file(path: str) -> str:
+    with open(path) as f:
+        return f.read()
