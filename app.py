@@ -1,5 +1,8 @@
 import os
 from typing import List
+import random
+
+from tqdm import tqdm
 
 from core.paraphraser import (
     ModelParams,
@@ -7,8 +10,8 @@ from core.paraphraser import (
     set_seed,
 )
 
-# from core.md_parser import extract_nlu
-from core.util import filename, file_ext
+from core.md_parser import extract_nlu, nlu2md
+from core.util import filename, file_ext, open_file
 from zipfile import ZipFile
 
 DEFAULT_PARAMS: List[tuple] = [
@@ -28,6 +31,29 @@ DEFAULT_PARAMS: List[tuple] = [
     ("stop_token", None),
 ]
 
+def expand_nlu(md: str, params: ModelParams) -> str:
+    utterance_groups: list = extract_nlu(md)
+    max_samples = max([len(u[1]) for u in utterance_groups])
+
+    expanded_utterances: list = []
+    h2s: list = []
+    for h2, utterances in tqdm(utterance_groups):
+        h2s.append(h2)
+        params.num_samples = max_samples - len(utterances)
+
+        if utterances:
+            # TODO: how do we select the sample?
+            sample_utterance: str = random.choice(utterances)
+            gen: list = gen_paraphrases(sample_utterance, params)
+            # TODO: eval for max distance and prune
+            if gen not in utterances:
+                utterances.extend(gen)
+        expanded_utterances.append(utterances)
+
+    print(f'\nAdded {len(expanded_utterances) - len(utterance_groups[1])} paraphrased utterances')
+    return nlu2md(list(zip(h2s, expanded_utterances)))
+
+
 def gen_paraphrases(input: str, params: ModelParams) -> list:
     # Seed parameters
     set_seed(params)
@@ -35,7 +61,7 @@ def gen_paraphrases(input: str, params: ModelParams) -> list:
     # Initialize Model
     model_path: str = os.getenv("MODEL_PATH")
     model: ParaphraseModel = ParaphraseModel(model_path, params)
-
+    # TODO: check for valid strings
     # Get paraphrases from input
     return model.get_paraphrases(input, int(params.num_samples), ";")
 
@@ -80,7 +106,8 @@ if __name__ == "__main__":
         print(gen_paraphrases(args.input, params))
 
     if args.nlu:
-        convert(open_file('examples/nlu_no_entities.md'))
+        expanded_md = expand_nlu(open_file(args.nlu), params)
+        print(expanded_md)
 
     # Stop the clock
     stop_perf = perf_counter()
