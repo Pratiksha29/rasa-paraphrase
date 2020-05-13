@@ -6,13 +6,31 @@ A CLI port of [Paraphrasing for NLU Data Augmentation](https://forum.rasa.com/t/
 
 ## Install:
 
+**Model Dependencies**
+
+[Download Model Dependencies](https://paraphrase-model.nyc3.digitaloceanspaces.com/model_deps.zip)
+
+
+**Packages**
+
 ```
 poetry install
 ```
 
 ***Try it out:***
+
+todo: invoke
+
+**One phrase at a time**
+
 ```
 python3 -m app --input "What time is it?" --num_samples 4
+```
+
+**Reading from a RASA NLU markdown file**
+
+```
+python3 -m app --nlu path/to/nlu.md
 ```
 
 
