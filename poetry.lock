@@ -191,14 +191,6 @@ python-versions = "*"
 version = "1.2.2"
 
 [[package]]
-category = "main"
-description = "Pythonic task execution"
-name = "invoke"
-optional = false
-python-versions = "*"
-version = "1.4.1"
-
-[[package]]
 category = "dev"
 description = "A Python utility / library to sort Python imports."
 name = "isort"
@@ -573,7 +565,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "e14a94400072e1162f3737ccab58739ba9a5b77716e4aee82eef7d4d135bdb96"
+content-hash = "a1791b82549efd785c7e78c4b08c5ec167e4f07bcf4559c2f40b41f462944a9f"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -648,11 +640,6 @@ importlib-metadata = [
 input-reader = [
     {file = "input_reader-1.2.2.tar.gz", hash = "sha256:592f5c085c73613c224e65567c7d0910d2e4e821dfab28c09738baf178e60fca"},
     {file = "input_reader-1.2.2.zip", hash = "sha256:ac639611955078b5c493fd9c33cdc502542675cfca66757a59cef1f93badc578"},
-]
-invoke = [
-    {file = "invoke-1.4.1-py2-none-any.whl", hash = "sha256:93e12876d88130c8e0d7fd6618dd5387d6b36da55ad541481dfa5e001656f134"},
-    {file = "invoke-1.4.1-py3-none-any.whl", hash = "sha256:87b3ef9d72a1667e104f89b159eaf8a514dbf2f3576885b2bbdefe74c3fb2132"},
-    {file = "invoke-1.4.1.tar.gz", hash = "sha256:de3f23bfe669e3db1085789fd859eb8ca8e0c5d9c20811e2407fa042e8a5e15d"},
 ]
 isort = [
     {file = "isort-4.3.21-py2.py3-none-any.whl", hash = "sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd"},

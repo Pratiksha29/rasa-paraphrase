@@ -76,7 +76,7 @@ if __name__ == "__main__":
     parser.add_argument("--nlu", help="A rasa nlu markdown file")
     parser.add_argument("--verbose", default=True)
 
-    # TODO: move to invoke cli interface
+    # TODO: consider invoke cli interface
 
     for k, v in DEFAULT_PARAMS:
         # TODO descriptions
@@ -105,7 +105,8 @@ if __name__ == "__main__":
     )
 
     if args.input:
-        print(gen_paraphrases(args.input, params))
+        for p in gen_paraphrases(args.input, params):
+            print(p)
 
     if args.nlu:
         expanded_md = expand_nlu(open_file(args.nlu), params)
