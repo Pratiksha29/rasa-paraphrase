@@ -63,7 +63,7 @@ def gen_paraphrases(input: str, params: ModelParams) -> list:
     # Initialize Model
     model_path: str = os.getenv("MODEL_PATH")
     model: ParaphraseModel = ParaphraseModel(model_path, params)
-    # Get paraphrases from input
+    # Generate paraphrases from input
     return model.get_paraphrases(input, int(params.num_samples), ";")
 
 
