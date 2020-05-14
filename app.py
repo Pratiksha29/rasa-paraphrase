@@ -31,9 +31,10 @@ DEFAULT_PARAMS: List[tuple] = [
     ("stop_token", None),
 ]
 
+
 def expand_nlu(md: str, params: ModelParams) -> str:
     utterance_groups: list = extract_nlu(md)
-    max_samples = max([len(u[1]) for u in utterance_groups])
+    max_samples: int = max([len(u[1]) for u in utterance_groups])
 
     expanded_utterances: list = []
     h2s: list = []
@@ -50,29 +51,30 @@ def expand_nlu(md: str, params: ModelParams) -> str:
                 utterances.extend(gen)
         expanded_utterances.append(utterances)
 
-    print(f'\nAdded {len(expanded_utterances) - len(utterance_groups[1])} paraphrased utterances')
+    print(
+        f"\nAdded {len(expanded_utterances) - len(utterance_groups[1])} paraphrased utterances"
+    )
     return nlu2md(list(zip(h2s, expanded_utterances)))
 
 
 def gen_paraphrases(input: str, params: ModelParams) -> list:
     # Seed parameters
     set_seed(params)
-
     # Initialize Model
     model_path: str = os.getenv("MODEL_PATH")
     model: ParaphraseModel = ParaphraseModel(model_path, params)
-    # TODO: check for valid strings
     # Get paraphrases from input
     return model.get_paraphrases(input, int(params.num_samples), ";")
+
 
 if __name__ == "__main__":
     import argparse
     from time import perf_counter
 
     parser: argparse.ArgumentParser = argparse.ArgumentParser()
-    parser.add_argument('--input', help="A sentence to paraphrase")
-    parser.add_argument('--nlu', help="A rasa nlu markdown file")
-    parser.add_argument('--verbose', default=True)
+    parser.add_argument("--input", help="A sentence to paraphrase")
+    parser.add_argument("--nlu", help="A rasa nlu markdown file")
+    parser.add_argument("--verbose", default=True)
 
     # TODO: move to invoke cli interface
 

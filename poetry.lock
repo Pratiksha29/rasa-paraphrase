@@ -229,14 +229,6 @@ python-versions = "*"
 version = "0.14.1"
 
 [[package]]
-category = "main"
-description = "A fast and complete Python implementation of Markdown"
-name = "markdown2"
-optional = false
-python-versions = "*"
-version = "2.3.9"
-
-[[package]]
 category = "dev"
 description = "McCabe checker, plugin for flake8"
 name = "mccabe"
@@ -581,7 +573,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "b96423cfcd5233fe160c4a2264dd59377555c7b98d757a6c42e23dee273487fe"
+content-hash = "e14a94400072e1162f3737ccab58739ba9a5b77716e4aee82eef7d4d135bdb96"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -673,10 +665,6 @@ jmespath = [
 joblib = [
     {file = "joblib-0.14.1-py2.py3-none-any.whl", hash = "sha256:bdb4fd9b72915ffb49fde2229ce482dd7ae79d842ed8c2b4c932441495af1403"},
     {file = "joblib-0.14.1.tar.gz", hash = "sha256:0630eea4f5664c463f23fbf5dcfc54a2bc6168902719fa8e19daf033022786c8"},
-]
-markdown2 = [
-    {file = "markdown2-2.3.9-py2.py3-none-any.whl", hash = "sha256:e6b401ec80b75e76a6b3dbb2c8ade513156fa55fa6c30b9640a1abf6184a07c8"},
-    {file = "markdown2-2.3.9.tar.gz", hash = "sha256:89526090907ae5ece66d783c434b35c29ee500c1986309e306ce2346273ada6a"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},

@@ -27,11 +27,21 @@ todo: invoke
 python3 -m app --input "What time is it?" --num_samples 4
 ```
 
+Produces:
+```
+and then what time?
+when's the time?
+what is this?
+what time is it?'
+```
+
 **Reading from a RASA NLU markdown file**
 
 ```
 python3 -m app --nlu path/to/nlu.md
 ```
+
+This will output mardown with a balanced number of utterances for each intent.
 
 
 
