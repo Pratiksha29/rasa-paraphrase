@@ -31,7 +31,7 @@ pip3 install --user boto3
 
 One phrase at a time:
 ```
-python3 -m app --input "What time is it?" --num_samples 4
+python3 -m app --input "What time is it?" --num_samples 3
 ```
 
 Produces:
