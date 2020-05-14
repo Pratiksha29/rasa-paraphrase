@@ -22,6 +22,11 @@ export MODEL_PATH=path/2/model_deps/
 poetry install
 ```
 
+> Note: `boto3` may require a global installation:
+```
+pip3 install --user boto3
+```
+
 ### Try it out:
 
 One phrase at a time:
@@ -68,11 +73,4 @@ Output:
 - how should i spend my time
 - How should I be spending my time?
 - I do not know how to spend my time?
-```
-
----
-
-> Note: `boto3` may require a global installation:
-```
-pip3 install --user boto3
 ```
