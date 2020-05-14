@@ -46,7 +46,7 @@ def expand_nlu(md: str, params: ModelParams) -> str:
             # TODO: how do we select the sample?
             sample_utterance: str = random.choice(utterances)
             gen: list = gen_paraphrases(sample_utterance, params)
-            # TODO: eval for max distance and prune
+            # TODO: eval for max semantic distance and prune
             if gen not in utterances:
                 utterances.extend(gen)
         expanded_utterances.append(utterances)

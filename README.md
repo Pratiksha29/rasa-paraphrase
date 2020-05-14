@@ -33,7 +33,6 @@ Produces:
 ```
 and then what time?
 when's the time?
-what is this?
 what time is it?'
 ```
 
