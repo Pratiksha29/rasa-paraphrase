@@ -9,6 +9,7 @@ def _extract_h2s(md: str) -> list:
 
 
 def extract_nlu(md: str) -> List[tuple]:
+    md = md.strip()
     h2s: list = _extract_h2s(md)
     utterances: list = []
     intent: list = [x.strip() for x in md.split("##") if x]

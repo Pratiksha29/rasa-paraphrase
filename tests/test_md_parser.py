@@ -39,3 +39,9 @@ def test_extract_hs2():
         "## intent: how_should_i_spend_money",
         "## intent: chitchat/tell_me_a_joke",
     ]
+
+def test_extract_nlu_leading_line_breaks():
+    md = open_file("examples/nlu_leading_breaks.md")
+    result = extract_nlu(md)
+
+    assert any(result[0][1])
