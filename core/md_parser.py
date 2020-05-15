@@ -20,8 +20,9 @@ def extract_nlu(md: str) -> List[tuple]:
 
 def nlu2md(nlu: List[tuple]):
     nlu_md: str = ""
-    for h2, utterances in nlu:
-        nlu_md += f"\n\n{h2}"
+    for i, item in enumerate(nlu):
+        h2, utterances = item
+        nlu_md += h2 if i == 0 else f"\n\n{h2}"
         for u in utterances:
             # remove any double quotes
             u = re.sub(r"(``|\'\'|\"\")", "", u)

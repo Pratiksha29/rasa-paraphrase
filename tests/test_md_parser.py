@@ -22,13 +22,13 @@ def test_nlu2md():
     assert result is not None
     assert (
         result
-        == "\n\n## intent: chitchat/what_should_i_buy\n- what should I buy\n- tell me what I should buy?"
+        == "## intent: chitchat/what_should_i_buy\n- what should I buy\n- tell me what I should buy?"
     )
 
 
 def test_nlu2md_unescaped_chars():
     result = nlu2md([("## intent: tell_me_a_joke", ["tell me, `` joke ''!"])])
-    assert result == "\n\n## intent: tell_me_a_joke\n- tell me,  joke !"
+    assert result == "## intent: tell_me_a_joke\n- tell me,  joke !"
 
 
 def test_extract_hs2():
