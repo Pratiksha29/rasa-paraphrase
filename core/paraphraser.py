@@ -213,8 +213,8 @@ def sample_sequence(
 
 class ParaphraseModel:
     def __init__(self, model_path: str, params: ModelParams):
-        self.model_path = model_path
         self.params = params
+        self.meta = { 'model_path': model_path }
 
     def load_model(self, model_path: str):
         params = self.params
@@ -234,8 +234,6 @@ class ParaphraseModel:
 
     def get_paraphrases(self, prompt: str, num_samples: int, stop_words: str) -> list:
         params: ModelParams = self.params
-        set_seed(params)
-        self.load_model(self.model_path)
 
         prompt += " >>>>>>>>"
         prompt = prompt.lower()

@@ -8,7 +8,7 @@ from tabulate import tabulate
 from tqdm import tqdm
 
 from core.md_parser import extract_nlu, nlu2md
-from core.paraphraser import ModelParams, ParaphraseModel
+from core.paraphraser import ModelParams, ParaphraseModel, set_seed
 from core.metrics import distance
 from core.util import file_ext, filename, open_file
 
@@ -64,7 +64,10 @@ def gen_paraphrases(model: ParaphraseModel, input: str, num_samples: int) -> lis
 
 def init_model(params: ModelParams, model_path: str) -> ParaphraseModel:
     """Initialize model with static and dynamic params"""
-    return ParaphraseModel(model_path, params)
+    model: ParaphraseModel = ParaphraseModel(model_path, params)
+    set_seed(params)
+    model.load_model(model_path)
+    return model
 
 
 if __name__ == "__main__":
