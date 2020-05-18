@@ -1,18 +1,19 @@
 # @credit: https://forum.rasa.com/t/paraphrasing-for-nlu-data-augmentation-experimental/27744?utm_source=linkedin
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-from typing import Optional, List, Any
 import logging
+import re
 from dataclasses import dataclass
+from typing import Any, List, Optional
 
 import numpy as np
 import torch
 import torch.nn.functional as F
+from tqdm import trange
+from transformers import GPT2Config, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTConfig
 
 # NOTE: type checking is not fully supported: https://github.com/pytorch/pytorch/issues/16574
 
-from tqdm import trange
-from transformers import GPT2Config, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTConfig
 
 # Constants
 MAX_LENGTH: int = int(10000)  # Hardcoded max length to avoid infinite loop
@@ -206,6 +207,7 @@ def sample_sequence(
                     F.softmax(filtered_logits, dim=-1), num_samples=1
                 )
             generated = torch.cat((generated, next_token), dim=1)
+
     return generated
 
 

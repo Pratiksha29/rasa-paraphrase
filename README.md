@@ -1,12 +1,15 @@
 # [WIP]
 
-## RASA Paraphrase
+# RASA Paraphrase
 
 A CLI port of [Paraphrasing for NLU Data Augmentation](https://forum.rasa.com/t/paraphrasing-for-nlu-data-augmentation-experimental/27744/1)
 
-### Install:
+### Getting Started
 
-**Install Model Dependencies**
+1. [Clone](https://github.com/crodriguez1a/rasa-paraphrase.git) this repository
+  ```
+  git clone https://github.com/crodriguez1a/rasa-paraphrase.git
+  ```
 
 1. [Download](https://paraphrase-model.nyc3.digitaloceanspaces.com/model_deps.zip) and expand model dependencies
 
@@ -16,20 +19,17 @@ export MODEL_PATH=path/2/model_deps/
 ```
 
 
-**Install Packages**
+### Install Packages
 
 ```
 poetry install
 ```
 
-> Note: `boto3` may require a global installation:
-```
-pip3 install --user boto3
-```
+> Note: *boto3* may require a global installation: `pip3 install --user boto3`
 
-### Try it out:
+### Try it out
 
-One phrase at a time:
+#### One phrase at a time:
 ```
 python3 -m app --input "What time is it?" --num_samples 3
 ```
@@ -41,9 +41,37 @@ when's the time?
 what time is it?'
 ```
 
+With Similarity:
+```
+python3 -m app --input "What time is it?" --num_samples 8 --similarity .98
+```
+
+Produces:
+```
+Similar:
+-----------------------  --------
+what hour is it?         0.998905
+how much time is it?     0.993163
+and when is it?          0.991079
+what time did it start?  0.988266
+-----------------------  --------
+
+Less Similar:
+--------------------------------  --------
+when is it?                       0.97795
+and when? - when the time comes?  0.974981
+what's up, what's up?             0.971918
+what time do we get there?        0.968454
+--------------------------------  --------
+```
+
+#### Optionally, output to CSV:
+```
+python3 -m app --input "Hi" --num_samples 8 --similarity .98 --csv my_file.csv
+```
 ---
 
-Reading from a RASA NLU markdown file:
+#### Reading from a RASA NLU markdown file:
 
 ```
 python3 -m app --nlu path/to/nlu.md
